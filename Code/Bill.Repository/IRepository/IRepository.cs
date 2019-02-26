@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bill.Repository.IRepository
 {
+    /// <summary>
+    /// 定义仓储模型中的数据标准操作接口
+    /// </summary>
     public interface IRepository
     {
         /// <summary>

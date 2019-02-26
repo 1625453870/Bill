@@ -41,11 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DbFactory.cs" />
+    <Compile Include="DatabaseLinksEnum.cs" />
     <Compile Include="IRepository\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\RepositoryFactory.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Bill.Dapper\Bill.Dapper.csproj">
+      <Project>{8c2b3761-5f1c-4870-bbdf-c7436fb20889}</Project>
+      <Name>Bill.Dapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bill.Data\Bill.Data.csproj">
+      <Project>{29fa7c18-8e73-4a90-91a6-6efd3542555a}</Project>
+      <Name>Bill.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
