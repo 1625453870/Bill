@@ -170,7 +170,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="XmlConfig\connectionStrings.config" />
     <Content Include="XmlConfig\appSettings.config" />
-    <Content Include="XmlConfig\repository.config" />
+    <Content Include="XmlConfig\unity.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

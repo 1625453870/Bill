@@ -11,10 +11,22 @@ namespace Bill.Repository.Repository
     /// </summary>
     public class RepositoryFactory
     {
-        protected void BaseRepository(DatabaseLinksEnum link = DatabaseLinksEnum.Sql)
+        protected Bill.Repository.IRepository.IRepository BaseRepository(DatabaseLinksEnum link = DatabaseLinksEnum.SqlService)
          {
-           
 
+            switch (link)
+            {
+                case DatabaseLinksEnum.SqlService:
+                    return Nested.sqlRepository;
+                default:
+                    return Nested.sqlRepository;
+
+            }
+        }
+
+        class Nested
+        {
+            internal static readonly Repository sqlRepository = new Repository(DbFactory.Base());
         }
     }
 }

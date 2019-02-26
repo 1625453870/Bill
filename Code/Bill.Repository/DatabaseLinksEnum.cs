@@ -11,7 +11,7 @@ namespace Bill.Repository
         /// <summary>
         /// SQL
         /// </summary>
-        Sql,
+        SqlService,
 
         /// <summary>
         /// MySql
