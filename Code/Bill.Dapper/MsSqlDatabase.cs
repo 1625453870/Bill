@@ -33,7 +33,7 @@ namespace Bill.Dapper
         /// <summary>
         /// 获取 数据库连接串
         /// </summary>
-        private IDbConnection  Connection
+        private IDbConnection Connection
         {
             get
             {
@@ -60,7 +60,7 @@ namespace Bill.Dapper
             }
         }
 
-      
+
         #endregion 属性
 
         #region 查询
@@ -175,22 +175,111 @@ As rowNum, * From ({1}) As T ) As N Where rowNum > {2} And rowNum <= {3}
         {
             using (var db = Context)
             {
-                return db.Select<T>(condition).QuerySingle();
+                return db.Select(condition).QuerySingle();
             }
         }
         #endregion
 
         #region 新增
-        public void  Insert<T>(T t) where T:class,new()
+        /// <summary>
+        /// 新增实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        public dynamic Insert<T>(T t) where T : class, new()
         {
             using (var db = Connection)
             {
-                 db.Insert(t);
-             }
+                return db.Insert(t);
+            }
+        }
+
+        /// <summary>
+        /// 新增sql
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="para">参数化</param>
+        public void Insert(string sql, object para = null)
+        {
+
+            using (var db = Connection)
+            {
+                db.Execute(sql, para);
+            }
+        }
+
+        /// <summary>
+        /// 批量新增
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        public void Insert<T>(IEnumerable<T> list) where T : class, new()
+        {
+            using (var db = Connection)
+            {
+                db.Insert(list);
+            }
         }
         #endregion
 
+        #region 修改
+        /// <summary>
+        /// 修改实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public bool Update<T>(T t) where T : class, new()
+        {
+            using (var db = Connection)
+            {
+                return db.Update(t);
+            }
+        }
 
+        /// <summary>
+        /// 修改sql
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="para">参数化</param>
+        public void Update(string sql, object para = null)
+        {
 
+            using (var db = Connection)
+            {
+                db.Execute(sql, para);
+            }
+        }
+        #endregion
+
+        #region 删除
+        /// <summary>
+        /// 实体删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public bool Delete<T>(T t) where T : class, new()
+        {
+            using (var db = Connection)
+            {
+                return db.Delete(t);
+            }
+        }
+
+        /// <summary>
+        /// sql删除
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="para"></param>
+        public void Delete(string sql, object para = null)
+        {
+
+            using (var db = Connection)
+            {
+                db.Execute(sql, para);
+            }
+        }
+        #endregion
     }
 }

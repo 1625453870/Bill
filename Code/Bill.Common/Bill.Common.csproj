@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigHelper.cs" />
+    <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Model\PaginationQuery.cs" />
     <Compile Include="UnityIocHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,6 +10,7 @@ namespace Bill.Data
 {
     public interface IDatabase
     {
+        #region 查询
         /// <summary>
         /// 集合查询
         /// </summary>
@@ -30,7 +31,7 @@ namespace Bill.Data
         /// <returns></returns>
         IEnumerable<T> FindPageList<T>(string sql, PaginationQuery pagination, out int total, object para = null)
             where T : new();
-      
+
         /// <summary>
         /// 集合查询-Lambda
         /// </summary>
@@ -69,5 +70,63 @@ namespace Bill.Data
         /// <returns></returns>
         T FindEntity<T>(Expression<Func<T, bool>> condition)
             where T : class, new();
+        #endregion
+
+        #region 新增
+        /// <summary>
+        /// 新增实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        dynamic Insert<T>(T t) where T : class, new();
+
+        /// <summary>
+        /// 新增sql
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="para">参数化</param>
+        void Insert(string sql, object para = null);
+
+        /// <summary>
+        /// 批量新增
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        void Insert<T>(IEnumerable<T> list) where T : class, new();
+        #endregion
+
+        #region 修改
+        /// <summary>
+        /// 修改实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        bool Update<T>(T t) where T : class, new();
+
+        /// <summary>
+        /// 修改sql
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="para">参数化</param>
+        void Update(string sql, object para = null);
+        #endregion
+
+        #region 删除
+        /// <summary>
+        /// 实体删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        bool Delete<T>(T t) where T : class, new();
+
+        /// <summary>
+        /// sql删除
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="para"></param>
+        void Delete(string sql, object para = null);
+        #endregion
     }
 }

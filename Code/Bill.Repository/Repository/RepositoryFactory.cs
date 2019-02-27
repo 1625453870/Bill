@@ -11,8 +11,15 @@ namespace Bill.Repository.Repository
     /// </summary>
     public class RepositoryFactory
     {
-        protected Bill.Repository.IRepository.IRepository BaseRepository(DatabaseLinksEnum link = DatabaseLinksEnum.SqlService)
-         {
+        protected Bill.Repository.IRepository.IRepository db
+        {
+            get
+            {
+                return BaseRepository();
+            }
+        }
+        private Bill.Repository.IRepository.IRepository BaseRepository(DatabaseLinksEnum link = DatabaseLinksEnum.SqlService)
+        {
 
             switch (link)
             {

@@ -41,11 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Bills.cs" />
+    <Compile Include="Entity\BillsType.cs" />
+    <Compile Include="Entity\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entity\" />
+    <Folder Include="DTO\" />
     <Folder Include="Enum\" />
+    <Folder Include="Query\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

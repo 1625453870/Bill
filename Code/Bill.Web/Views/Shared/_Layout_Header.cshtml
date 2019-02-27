@@ -1,0 +1,28 @@
+﻿<ul class="layui-nav layui-bg-green" id="menu">
+    <li class="layui-nav-item ">
+        <img src="~/Images/login.png" style="width:55px" />
+    </li>
+    <li class="layui-nav-item">
+        <a href="javascript:;">账单</a>
+        <dl class="layui-nav-child">
+            <!-- 二级菜单 -->
+            <dd><a href="javascript:;" name="/BillsType/Index">账单类型</a></dd>
+            <dd><a href="javascript:;" name="/Bills/Index">账单管理</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item hreader_user">
+        <a href="javascript:;"><img src="http://t.cn/RCzsdCq" class="layui-nav-img" id="logo">张翔</a>
+        <dl class="layui-nav-child">
+            <dd><a href="javascript:;">账户管理</a></dd>
+            <dd><a href="javascript:;">退出</a></dd>
+        </dl>
+    </li>
+</ul>
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function () {
+        var element = layui.element;
+
+        //…
+    });
+</script>
