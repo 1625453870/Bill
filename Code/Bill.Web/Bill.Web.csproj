@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Filters\ActionFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BillsTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -312,6 +313,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_Layout_Layer_Open.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\BillsType\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
