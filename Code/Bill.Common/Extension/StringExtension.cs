@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,27 @@ namespace Bill.Common.Extension
         public static int ToInt32(this string str)
         {
             return Int32.Parse(str);
+        }
+
+        /// <summary>
+        /// MD5加密
+        /// </summary>
+        /// <param name="myString">加密字符串</param>
+        /// <param name="salt">随机加密码</param>
+        /// <returns></returns>
+        public static string GetMD5(this string str, string salt)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = System.Text.Encoding.Unicode.GetBytes(str + salt);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x");
+            }
+
+            return byte2String;
         }
     }
 }

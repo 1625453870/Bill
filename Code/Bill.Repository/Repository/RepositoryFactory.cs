@@ -24,7 +24,7 @@ namespace Bill.Repository.Repository
             switch (link)
             {
                 case DatabaseLinksEnum.SqlService:
-                    return Nested.sqlRepository;
+                    return new Repository(DbFactory.Base());
                 default:
                     return Nested.sqlRepository;
 
@@ -33,6 +33,7 @@ namespace Bill.Repository.Repository
 
         class Nested
         {
+            static Nested() { }
             internal static readonly Repository sqlRepository = new Repository(DbFactory.Base());
         }
     }

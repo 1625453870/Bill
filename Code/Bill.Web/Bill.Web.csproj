@@ -127,15 +127,22 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\Filters\ActionFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Css\login.css" />
     <Content Include="Content\Css\main.css" />
+    <Content Include="Content\Scripts\Bill\Common\CookieHelper.js" />
+    <Content Include="Content\Scripts\Bill\Common\LayerHelper.js" />
+    <Content Include="Content\Scripts\Bill\Common\Login.js" />
+    <Content Include="Content\Scripts\Bill\HomeIndex.js" />
     <Content Include="Content\Scripts\Cookie\jquery-latest.js" />
     <Content Include="Content\Scripts\Cookie\jquery.cookie.js" />
     <Content Include="Content\Scripts\layui\css\layui.css" />
@@ -269,7 +276,6 @@
     <Content Include="Content\Scripts\layui\font\iconfont.eot" />
     <Content Include="Content\Scripts\layui\font\iconfont.ttf" />
     <Content Include="Content\Scripts\layui\font\iconfont.woff" />
-    <Content Include="Content\Scripts\Bill\tsconfig.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -281,7 +287,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -299,6 +307,9 @@
     <Content Include="XmlConfig\appSettings.config" />
     <Content Include="XmlConfig\unity.config" />
     <Content Include="Views\Shared\_Layout_Header.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Shared\_Layout_Layer_Open.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -314,12 +325,21 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Content\Scripts\Bill\ts\Common\Cookie.ts" />
-    <TypeScriptCompile Include="Content\Scripts\Bill\ts\Common\Layer.ts" />
-    <TypeScriptCompile Include="Content\Scripts\Bill\ts\HomeIndex.ts" />
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <ProjectReference Include="..\Bill.BLL\Bill.BLL.csproj">
+      <Project>{92ceabbb-849e-44e1-b916-180b56451993}</Project>
+      <Name>Bill.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bill.Common\Bill.Common.csproj">
+      <Project>{004cb0bd-cfd8-4bfa-b2af-f23d1fdca17a}</Project>
+      <Name>Bill.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bill.Model\Bill.Model.csproj">
+      <Project>{d8022db3-7985-40a9-9c6f-3f770957fd5f}</Project>
+      <Name>Bill.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -20,13 +20,9 @@ namespace Bill.Common
         /// <summary>
         /// 获取DbContainer对象
         /// </summary>
-        public static UnityIocHelper DbInstance => Nested.instance;
+        public static UnityIocHelper DbInstance => Dbinstance;
 
-        class Nested
-        {
-            static Nested() { }
-            internal static readonly UnityIocHelper instance = Dbinstance;
-        }
+       
 
         /// <summary>
         /// 构造
@@ -36,9 +32,9 @@ namespace Bill.Common
         {
             try
             {
-                _container = new UnityContainer();
+                var container = new UnityContainer();
                 var configuration = ConfigurationManager.GetSection(UnityConfigurationSection.SectionName) as UnityConfigurationSection;
-                configuration.Configure(_container, containerName);
+                configuration.Configure(container, containerName);
             }
             catch (Exception e)
             {

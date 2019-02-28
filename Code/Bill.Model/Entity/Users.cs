@@ -22,6 +22,11 @@ namespace Bill.Model.Entity
         /// 密码
         /// </summary>		
         public string Pwd { get; set; }
+
+        /// <summary>
+        /// 随机加密码
+        /// </summary>
+        public string RandomCode { get; set; }
         /// <summary>
         /// 昵称
         /// </summary>		

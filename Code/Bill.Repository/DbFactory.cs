@@ -18,6 +18,17 @@ namespace Bill.Repository
     {
         public static IDatabase Base()
         {
+            try
+            {
+                UnityContainer container = new UnityContainer();
+                UnityConfigurationSection configuration = ConfigurationManager.GetSection(UnityConfigurationSection.SectionName) as UnityConfigurationSection;
+                configuration.Configure(container, "defaultContainer");
+                var aa = container.Resolve<IDatabase>(ConfigurationManager.AppSettings["DataBase"]);
+            }
+            catch (Exception e)
+            {
+                var aa = 1;
+            }
             return UnityIocHelper.DbInstance.GetService<IDatabase>(ConfigurationManager.AppSettings["DataBase"]);
 
         }
