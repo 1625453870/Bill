@@ -11,7 +11,7 @@ namespace Bill.Common
 {
    public sealed class UnityIocHelper
     {
-        private readonly IUnityContainer _container;
+        private readonly IUnityContainer container;
         /// <summary>
         /// 获取DbContainer
         /// </summary>
@@ -32,7 +32,7 @@ namespace Bill.Common
         {
             try
             {
-                var container = new UnityContainer();
+                container = new UnityContainer();
                 var configuration = ConfigurationManager.GetSection(UnityConfigurationSection.SectionName) as UnityConfigurationSection;
                 configuration.Configure(container, containerName);
             }
@@ -44,7 +44,7 @@ namespace Bill.Common
    
         public T  GetService<T>(string name)
         {
-            T res = _container.Resolve<T>(name);
+            T res = container.Resolve<T>(name);
             return res;
         }
     }

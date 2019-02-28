@@ -38,7 +38,7 @@ namespace Bill.Model.Entity
         /// <summary>
         /// 创建时间
         /// </summary>		
-        public DateTime CreationTime { get; set; }
+        public DateTime CreationTime { get; set; } = DateTime.Now;
         /// <summary>
         /// 描述
         /// </summary>		

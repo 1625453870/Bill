@@ -66,9 +66,9 @@
       <Project>{004cb0bd-cfd8-4bfa-b2af-f23d1fdca17a}</Project>
       <Name>Bill.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bill.Dapper\Bill.Dapper.csproj">
-      <Project>{8c2b3761-5f1c-4870-bbdf-c7436fb20889}</Project>
-      <Name>Bill.Dapper</Name>
+    <ProjectReference Include="..\Bill.Data.Dapper\Bill.Data.Dapper.csproj">
+      <Project>{37f5eba0-5aa5-4023-9e78-376d45eee6d0}</Project>
+      <Name>Bill.Data.Dapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bill.Data\Bill.Data.csproj">
       <Project>{29fa7c18-8e73-4a90-91a6-6efd3542555a}</Project>

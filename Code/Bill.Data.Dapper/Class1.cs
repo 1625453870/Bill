@@ -1,13 +1,12 @@
-﻿using Bill.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bill.Dapper
+namespace Bill.Data.Dapper
 {
-   public  class AA:IAA
+    public class Class1
     {
     }
 }

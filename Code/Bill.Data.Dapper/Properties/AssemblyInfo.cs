@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Bill.Dapper")]
+[assembly: AssemblyTitle("Bill.Data.Dapper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bill.Dapper")]
+[assembly: AssemblyProduct("Bill.Data.Dapper")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("8c2b3761-5f1c-4870-bbdf-c7436fb20889")]
+[assembly: Guid("37f5eba0-5aa5-4023-9e78-376d45eee6d0")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

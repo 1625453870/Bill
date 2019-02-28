@@ -305,7 +305,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="XmlConfig\connectionStrings.config" />
     <Content Include="XmlConfig\appSettings.config" />
-    <Content Include="XmlConfig\unity.config" />
+    <Content Include="XmlConfig\unity.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_Layout_Header.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_Layout_Layer_Open.cshtml" />
@@ -360,7 +362,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56628</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56561/</IISUrl>
+          <IISUrl>http://localhost:56562/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

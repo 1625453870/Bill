@@ -1,5 +1,6 @@
 ﻿using Bill.Common;
 using Bill.Data;
+using Bill.Data.Dapper;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using System;
@@ -18,18 +19,11 @@ namespace Bill.Repository
     {
         public static IDatabase Base()
         {
-            try
-            {
-                UnityContainer container = new UnityContainer();
-                UnityConfigurationSection configuration = ConfigurationManager.GetSection(UnityConfigurationSection.SectionName) as UnityConfigurationSection;
-                configuration.Configure(container, "defaultContainer");
-                var aa = container.Resolve<IDatabase>(ConfigurationManager.AppSettings["DataBase"]);
-            }
-            catch (Exception e)
-            {
-                var aa = 1;
-            }
-            return UnityIocHelper.DbInstance.GetService<IDatabase>(ConfigurationManager.AppSettings["DataBase"]);
+            var aa = typeof(MsSqlDatabase);
+            var configuration = ConfigurationManager.GetSection(UnityConfigurationSection.SectionName) as UnityConfigurationSection;
+            var container = new UnityContainer();
+            configuration.Configure(container, "DbContainer");
+            return container.Resolve<IDatabase>(ConfigurationManager.AppSettings["DataBase"]);
 
         }
     }

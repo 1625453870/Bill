@@ -14,9 +14,9 @@ using Bill.Common.Model;
 using System.Linq.Expressions;
 using DapperExtensions;
 
-namespace Bill.Dapper
+namespace Bill.Data.Dapper
 {
-    public class MsSqlDatabase : Bill.Data.IDatabase
+    public class MsSqlDatabase :IDatabase
     {
         class Nested
         {
@@ -25,10 +25,7 @@ namespace Bill.Dapper
 
         #region 属性
 
-        /// <summary>
-        /// 数据库连接字符串
-        /// </summary>
-        private string ConnectionString { get; set; }
+     
 
         /// <summary>
         /// 获取 数据库连接串
@@ -55,7 +52,7 @@ namespace Bill.Dapper
         {
             get
             {
-                return new DbContext().ConnectionString(ConnectionString, DatabaseType.MSSQLServer);
+                return new DbContext().ConnectionString(Nested.connString, DatabaseType.MSSQLServer);
 
             }
         }
