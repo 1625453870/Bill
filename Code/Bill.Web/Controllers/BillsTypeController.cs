@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Bill.BLL;
+using Bill.Common;
+using Bill.Common.Extension;
+using Bill.Model.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +12,37 @@ namespace Bill.Web.Controllers
 {
     public class BillsTypeController : Controller
     {
+        private CommonBLL commonbll = new CommonBLL();
         // GET: BillsType
         public ActionResult Index()
         {
-            return View();
+            var userId = CookieHelper.UserId.ToInt32();
+            return View(commonbll.FindList<BillsType>(p => p.UserId == userId));
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id.HasValue)
+            {
+                return PartialView(commonbll.FindEntity<BillsType>(p => p.Id == id));
+            }
+            return PartialView(new BillsType());
+        }
+
+        public void EditData(BillsType model)
+        {
+            model.UserId = CookieHelper.UserId.ToInt32();
+            if (model.Id <= 0)
+            {
+                commonbll.Insert(model);
+            }
+            else
+                commonbll.Update(model);
+        }
+
+        public void Delete(int id)
+        {
+            commonbll.Delete<BillsType>(new BillsType { Id = id });
         }
     }
 }

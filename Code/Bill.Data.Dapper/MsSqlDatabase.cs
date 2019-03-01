@@ -13,10 +13,13 @@ using Dapper;
 using Bill.Common.Model;
 using System.Linq.Expressions;
 using DapperExtensions;
+using Bill.Common.LambdaToSQL;
+using Bill.Common.Attribute;
+using System.Reflection;
 
 namespace Bill.Data.Dapper
 {
-    public class MsSqlDatabase :IDatabase
+    public class MsSqlDatabase : IDatabase
     {
         class Nested
         {
@@ -25,7 +28,7 @@ namespace Bill.Data.Dapper
 
         #region 属性
 
-     
+
 
         /// <summary>
         /// 获取 数据库连接串
@@ -123,10 +126,13 @@ As rowNum, * From ({1}) As T ) As N Where rowNum > {2} And rowNum <= {3}
         public IEnumerable<T> FindList<T>(Expression<Func<T, bool>> condition)
                where T : new()
         {
-            using (var db = Context)
-            {
-                return db.Select<List<T>>(condition);
-            }
+
+            var lambda = new LambdaExpConditions<T>();
+            lambda.AddAndWhere(condition);
+            string where = lambda.Where();
+            string sql = DatabaseCommon.SelectSql<T>(where).ToString();
+            return this.FindList<T>(sql);
+
         }
 
         /// <summary>
@@ -278,5 +284,7 @@ As rowNum, * From ({1}) As T ) As N Where rowNum > {2} And rowNum <= {3}
             }
         }
         #endregion
+
+
     }
 }

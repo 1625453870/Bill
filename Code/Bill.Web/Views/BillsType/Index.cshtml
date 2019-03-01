@@ -1,68 +1,41 @@
-﻿@{
+﻿@model List<Bill.Model.Entity.BillsType>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     Page.Title = "账单类型";
 }
+<link href="~/Content/Css/billsType.css" rel="stylesheet" />
+<script src="~/Content/Scripts/Bill/BillsType.js"></script>
+<div class="div_All">
 
-<div>
-    <div style="width:100px;height:100px;text-align:center;float:left">
-        <a href="javascript:;">
-            <div style="width:100%;text-align:center">
-                <img src="http://t.cn/RCzsdCq" class="layui-nav-img" style="width:80%;height:80%;padding: 10px 0px 5px 0px;margin:0px" id="logo">
-            </div>
-            <div style="text-align:center;">
-                <span>张翔</span>
-            </div>
-        </a>
-    </div>
-    <div style="width:100px;height:100px;text-align:center;float:left">
-        <a href="javascript:;">
-            <div style="width:100%;text-align:center">
-                <img src="http://t.cn/RCzsdCq" class="layui-nav-img" style="width:80%;height:80%;padding: 10px 0px 5px 0px;margin:0px" id="logo">
-            </div>
-            <div style="text-align:center;">
-                <span>张翔</span>
-            </div>
-        </a>
-    </div>
-    <div style="width:100px;height:100px;text-align:center;float:left">
-        <a href="javascript:;">
-            <div style="width:100%;text-align:center">
-                <img src="http://t.cn/RCzsdCq" class="layui-nav-img" style="width:80%;height:80%;padding: 10px 0px 5px 0px;margin:0px" id="logo">
-            </div>
-            <div style="text-align:center;">
-                <span>张翔</span>
-            </div>
-        </a>
-    </div>
-    <div style="width:100px;height:100px;text-align:center;float:left">
-        <a href="javascript:;">
-            <div style="width:100%;text-align:center">
-                <img src="http://t.cn/RCzsdCq" class="layui-nav-img" style="width:80%;height:80%;padding: 10px 0px 5px 0px;margin:0px" id="logo">
-            </div>
-            <div style="text-align:center;">
-                <span>张翔</span>
-            </div>
-        </a>
-    </div>
-    <div style="width:100px;height:100px;text-align:center;float:left">
-        <a href="javascript:;">
-            <div style="width:100%;text-align:center">
-                <img src="http://t.cn/RCzsdCq" class="layui-nav-img" style="width:80%;height:80%;padding: 10px 0px 5px 0px;margin:0px" id="logo">
-            </div>
-            <div style="text-align:center;">
-                <span>张翔</span>
-            </div>
-        </a>
-    </div>
-    <div style="width:100px;height:100px;text-align:center;float:left">
-        <a href="javascript:;">
-            <div style="width:100%;text-align:center">
-                <img src="http://t.cn/RCzsdCq" class="layui-nav-img" style="width:80%;height:80%;padding: 10px 0px 5px 0px;margin:0px" id="logo">
-            </div>
-            <div style="text-align:center;">
-                <span>张翔</span>
-            </div>
-        </a>
-    </div>
+    <div class="div_head">
+        <div class="title">
+            <h2>
+                账单类型
+            </h2>
+            <a href="javascript:;" title="新增" id="Add">
+                <img src="~/Images/jia.png" />
+            </a>
 
-</div>
+        </div>
+        @foreach (var item in Model)
+        {
+            var imgsrc = !item.Logo.IsEmpty() ? item.Logo : "http://t.cn/RCzsdCq";
+        <div class="content">
+            <a>
+                <img src="~/Images/shanchu.png" class="delete_img" name="@item.Id"/>
+            </a>
+            
+            <a href="javascript:;" name="@item.Id" class="imgContenta">
+                <div class="imgContent">
+                    <img src="@imgsrc" class="layui-nav-img img">
+                    <div style="text-align:center;">
+                        <span>@item.Name</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        }
+
+
+    </div>
+</div>>

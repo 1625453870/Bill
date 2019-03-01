@@ -1,0 +1,28 @@
+﻿@model Bill.Model.Entity.BillsType
+@{
+    Layout = "~/Views/Shared/_Layout_Layer_Open.cshtml";
+    Page.Title = "首页";
+    var imgsrc = !Model.Logo.IsEmpty() ? Model.Logo : "http://t.cn/RCzsdCq";
+}
+<link href="~/Content/Css/login.css" rel="stylesheet" />
+<link href="~/Content/Css/billsType.css" rel="stylesheet" />
+<script src="~/Content/Scripts/Bill/BillsTypeEdit.js"></script>
+<div class="layui-form register_form">
+    <div class="layui-form-item head_div">
+        <img src="@imgsrc" class="layui-nav-img img" title="标志" id="Logo" />
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-block">
+            <input type="text" id="Name" required lay-verify="required" placeholder="请输入类型名称" autocomplete="off" class="layui-input" maxlength="10" value="@Model.Name">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+            <textarea id="Describe" placeholder="请输入内容" class="layui-textarea" maxlength="64" >@Model.Describe</textarea>
+        </div>
+    </div>
+    <input id="Id" type="hidden" value="@Model.Id">
+</div>
+

@@ -15,6 +15,8 @@
         }
     },
     setUserCookie(data) {
+        if (data.Id)
+            cookieHelper.setCookie("Id", data.Id);
         if (data.Name)
             cookieHelper.setCookie("Name", data.Name);
         if (data.Logo)

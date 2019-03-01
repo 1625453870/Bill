@@ -98,3 +98,13 @@
     .main_log .title > a {
         color: red;
     }
+
+
+
+#content {
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    left: 0px;
+}

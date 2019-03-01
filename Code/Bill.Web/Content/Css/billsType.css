@@ -1,0 +1,98 @@
+﻿.div_All {
+    background-color: #f2f2f2;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.div_head {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 990px;
+}
+
+    .div_head .content {
+        position:relative;
+        width: 20%;
+        height: 180px;
+        text-align: center;
+        float: left;
+        border: 1px solid #eee;
+        margin-left: -1px;
+        background-color: #ffffff;
+    }
+
+.content:hover {
+    background: #f2f2f2;
+    background-color: #eee;
+}
+
+.imgContent {
+    text-align: center;
+    padding: 20px;
+}
+
+.div_head .img {
+    width: 60%;
+    height: 80%;
+    padding: 10px 0px 10px 0px;
+    margin: 0px
+}
+
+.div_All h2 {
+    display: contents;
+    margin-bottom: 0;
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 200;
+    background-color: #f5f5f5;
+}
+
+.title img {
+    width: 30px;
+    border: none;
+    padding-left: 50px;
+}
+
+.div_All > img {
+    margin-bottom: 0;
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 200;
+    background-color: #f5f5f5;
+}
+
+.head_div {
+    text-align: center;
+    margin-left: 100px;
+}
+    .head_div img, .head_div input {
+        width: 70px;
+        height: 70px;
+    }
+    .head_div input {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        opacity: 0;
+    }
+.delete_img {
+    display:none;
+    position: absolute;
+    right: 0;
+    width: 20px;
+    padding: 5px;
+}
+.delete_img:hover{
+    width: 30px;
+    padding: 5px;
+}

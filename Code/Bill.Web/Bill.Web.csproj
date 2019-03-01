@@ -132,14 +132,18 @@
     <Compile Include="Controllers\BillsTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Css\billsType.css" />
     <Content Include="Content\Css\login.css" />
     <Content Include="Content\Css\main.css" />
+    <Content Include="Content\Scripts\Bill\BillsType.js" />
+    <Content Include="Content\Scripts\Bill\BillsTypeEdit.js" />
     <Content Include="Content\Scripts\Bill\Common\CookieHelper.js" />
     <Content Include="Content\Scripts\Bill\Common\LayerHelper.js" />
     <Content Include="Content\Scripts\Bill\Common\Login.js" />
@@ -266,10 +270,12 @@
     <Content Include="Images\b151f8198618367a9bde864b2e738bd4b21ce5d5.jpg" />
     <Content Include="Images\banner.jpg" />
     <Content Include="Images\bg.jpeg" />
+    <Content Include="Images\jia.png" />
     <Content Include="Images\login.png" />
     <Content Include="Images\pn1.jpg" />
     <Content Include="Images\pn2.jpg" />
     <Content Include="Images\pn3.jpg" />
+    <Content Include="Images\shanchu.png" />
     <Content Include="Images\减.png" />
     <Content Include="Images\新增.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -314,10 +320,12 @@
     <Content Include="Views\Shared\_Layout_Layer_Open.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\BillsType\Index.cshtml" />
+    <Content Include="Views\BillsType\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
