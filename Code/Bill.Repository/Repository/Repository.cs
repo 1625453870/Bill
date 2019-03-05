@@ -33,15 +33,31 @@ namespace Bill.Repository.Repository
         }
 
         /// <summary>
-        /// 分页集合查询（Lambda）
+        /// 集合查询—分页
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql">sql语句</param>
+        /// <param name="pagination">分页实体</param>
+        /// <param name="total">数据总条数</param>
+        /// <param name="para">参数化</param>
+        /// <returns></returns>
+       public PaginationDTO<IEnumerable<T>> FindPageList<T>(string sql, PaginationQuery pagination, object para = null)
+            where T : new()
+        {
+            return db.FindPageList<T>(sql, pagination, para);
+        }
+
+        /// <summary>
+        /// 分页查询-Lambda
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="condition"></param>
+        /// <param name="pagination">分页实体</param>
         /// <returns></returns>
-        public IEnumerable<T> FindPageList<T>(string sql, PaginationQuery pagination, out int total, object para = null)
-               where T : new()
+        public PaginationDTO<IEnumerable<T>> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination)
+             where T : new()
         {
-            return db.FindPageList<T>(sql, pagination, out total, para);
+            return db.FindPageList<T>(condition, pagination);
         }
 
         /// <summary>
@@ -56,18 +72,7 @@ namespace Bill.Repository.Repository
             return db.FindList<T>(condition);
         }
 
-        /// <summary>
-        /// 分页集合查询（Lambda）
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="condition"></param>
-        /// <returns></returns>
-        public IEnumerable<T> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination, out int total)
-               where T : class, new()
-        {
-            return db.FindPageList<T>(condition, pagination, out total);
-        }
-
+      
 
         /// <summary>
         /// 查询实体对象

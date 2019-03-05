@@ -1,0 +1,120 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Page.Title = "账单";
+
+    var billsTypeList = new Bill.Web.Controllers.BillsTypeController().FindList();
+}
+<link href="~/Content/Css/Bills.css" rel="stylesheet" />
+<link href="~/Content/Css/billsType.css" rel="stylesheet" />
+<script src="~/Content/Scripts/Bill/Bills.js"></script>
+<div class="div_All">
+    <div class="div_head div_head_bills">
+        <div class="title">
+            <h2>
+                我的账单
+            </h2>
+            <a href="javascript:;" title="新增" id="Add">
+                <img src="~/Images/jia.png" />
+            </a>
+        </div>
+        <div class="z_content dateTiemContent" id="CreateTime">
+            <strong>时间：</strong>
+            <input type="text" class="layui-input input" id="StartDateTime" value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")">
+            <span>-</span>
+            <input type="text" class="layui-input input" id="EndDateTime" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+            <a>今日</a>
+            <span>|</span>
+            <span>最近：</span>
+            <a name="1" class="bills_selected">1个月</a>
+            <a name="3">3个月</a>
+            <a name="12">1年</a>
+        </div>
+
+        <div class="z_content type" id="BillsType">
+            <strong>分类：</strong>
+            <a name="0" class="bills_selected">全部</a>
+            @foreach (var item in billsTypeList)
+            {
+                <a name="@item.Id">@item.Name</a>
+            }
+        </div>
+
+
+    </div>
+    <div class="div_head div_content">
+        <div class="div_head div_head_content">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>昵称</th>
+                        <th>加入时间</th>
+                        <th>签名</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>贤心</td>
+                        <td>2016-11-29</td>
+                        <td>人生就像是一场修行</td>
+                    </tr>
+                    <tr>
+                        <td>许闲心</td>
+                        <td>2016-11-28</td>
+                        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="demo7"></div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['laydate', 'laypage', 'layer'], function () {
+        var laydate = layui.laydate,
+            laypage = layui.laypage,
+            layer = layui.layer,
+            table = layui.table;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#StartDateTime' //指定元素
+        });
+        laydate.render({
+            elem: '#EndDateTime' //指定元素
+        });
+        //表格加载
+        table.render({
+            elem: '#demo'
+            , height: 312
+            , url: '/Bills/FindList/user/' //数据接口
+            , page: true //开启分页
+            , cols: [[ //表头
+                { field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left' }
+                , { field: 'username', title: '用户名', width: 80 }
+                , { field: 'sex', title: '性别', width: 80, sort: true }
+                , { field: 'city', title: '城市', width: 80 }
+                , { field: 'sign', title: '签名', width: 177 }
+                , { field: 'experience', title: '积分', width: 80, sort: true }
+                , { field: 'score', title: '评分', width: 80, sort: true }
+                , { field: 'classify', title: '职业', width: 80 }
+                , { field: 'wealth', title: '财富', width: 135, sort: true }
+            ]]
+        });
+
+        //分页加载
+        laypage.render({
+            elem: 'demo7'
+            , count: 100
+            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            , jump: function (obj) {
+                console.log(obj)
+            }
+        });
+
+
+    });
+</script>

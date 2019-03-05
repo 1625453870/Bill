@@ -61,6 +61,7 @@
     <Compile Include="Attribute\EntityAttributeHelper.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="CookieHelper.cs" />
+    <Compile Include="Extension\LambdaExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="LambdaToSQL\ExpressionVisitor.cs" />
     <Compile Include="LambdaToSQL\ExpressionWriterSql.cs" />

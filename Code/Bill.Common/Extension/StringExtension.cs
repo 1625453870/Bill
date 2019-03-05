@@ -43,6 +43,16 @@ namespace Bill.Common.Extension
         }
 
         /// <summary>
+        /// 转换时间
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static DateTime ToDateTime(this string str)
+        {
+            return DateTime.Parse(str);
+        }
+
+        /// <summary>
         /// MD5加密
         /// </summary>
         /// <param name="myString">加密字符串</param>

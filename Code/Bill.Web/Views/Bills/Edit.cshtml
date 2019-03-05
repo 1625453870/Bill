@@ -1,0 +1,42 @@
+﻿@model Bill.Model.Entity.Bills
+@{
+    Layout = "~/Views/Shared/_Layout_Layer_Open.cshtml";
+    Page.Title = "首页";
+}
+<link href="~/Content/Css/login.css" rel="stylesheet" />
+<link href="~/Content/Css/billsType.css" rel="stylesheet" />
+<script src="~/Content/Scripts/Bill/BillsTypeEdit.js"></script>
+<div class="layui-form register_form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">时间</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input input" id="UpdateTime" lay-verify="required" value="@DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">金额</label>
+        <div class="layui-input-block">
+            <input type="text" id="Money" required lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input" value="@Model.Money">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+            <textarea id="Describe" placeholder="请输入内容" class="layui-textarea" maxlength="64">@Model.Describe</textarea>
+        </div>
+    </div>
+    <input id="Id" type="hidden" value="@Model.Id">
+</div>
+
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#UpdateTime' //指定元素
+            , type: 'datetime'
+        });
+    });
+</script>
+

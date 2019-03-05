@@ -28,4 +28,17 @@ namespace Bill.Common.Model
         /// </summary>
         public string Sord { get; set; } = "DESC";
     }
+
+    public class PaginationDTO<T>
+    {
+
+        /// <summary>
+        /// 数据
+        /// </summary>
+        public T Data { get; set; }
+        /// <summary>
+        /// 数据条数
+        /// </summary>
+        public int Total { get; set; }
+    }
 }

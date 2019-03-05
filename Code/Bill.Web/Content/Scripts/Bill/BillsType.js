@@ -35,16 +35,15 @@ var billsType = {
                 Name: body.find("#Name").val(),
                 Describe: body.find("#Describe").val(),
             }, function () {
-
                 layer.msg(!id ? '创建成功！' : "修改成功", { icon: 6 });
-                })
+            })
             setTimeout(function () {
                 layer.close(index);
                 window.location.reload();
             }, 1000)
-          
+
         }
         var btn2 = function (index) { }
-        layerHelper.open("新增", "/BillsType/Edit?id=" + id, 2, ["400px", "400px"], ["确认", "取消"], [btn1, btn2])
+        layerHelper.open(id ? "修改" : "新增", "/BillsType/Edit?id=" + id, 2, ["400px", "400px"], ["确认", "取消"], [btn1, btn2])
     }
 }

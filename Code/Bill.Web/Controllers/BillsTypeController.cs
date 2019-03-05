@@ -2,6 +2,7 @@
 using Bill.Common;
 using Bill.Common.Extension;
 using Bill.Model.Entity;
+using Bill.Model.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,13 @@ namespace Bill.Web.Controllers
         // GET: BillsType
         public ActionResult Index()
         {
+            return View(FindList());
+        }
+
+        public IEnumerable<BillsType>  FindList()
+        {
             var userId = CookieHelper.UserId.ToInt32();
-            return View(commonbll.FindList<BillsType>(p => p.UserId == userId));
+            return commonbll.FindList<BillsType>(p => p.UserId == userId);
         }
 
         public ActionResult Edit(int? id)

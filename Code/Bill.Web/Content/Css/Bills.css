@@ -1,0 +1,49 @@
+﻿.title {
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.input {
+    width: 100px;
+    display: -webkit-inline-box;
+}
+
+.z_content {
+    margin-top: 10px;
+    padding: 0px 0px 10px 20px;
+}
+
+    .z_content a {
+        margin: 0px 10px;
+    }
+
+.dateTiemContent {
+    border-bottom: 1px dashed #d4d4d4;
+}
+
+
+.div_head_bills {
+    height: 200px;
+    bottom: initial;
+}
+
+.div_content {
+    width: 100%;
+    background-color: #ffffff;
+    top: 180px;
+}
+
+.div_head_content {
+    background-color: #ffffff;
+}
+
+.type {
+    margin-top: 20px;
+}
+.bills_selected {
+    background-color: #999;
+    padding: 3px 10px;
+}

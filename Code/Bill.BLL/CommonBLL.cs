@@ -57,10 +57,10 @@ namespace Bill.BLL
         /// <param name="pagination">分页实体</param>
         /// <param name="total">数据总条数</param>
         /// <returns></returns>
-        public IEnumerable<T> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination, out int total)
+        public PaginationDTO<IEnumerable<T>> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination)
              where T : class, new()
         {
-            return dal.FindPageList(condition, pagination, out total);
+            return dal.FindPageList(condition, pagination);
         }
         #endregion
 

@@ -45,11 +45,17 @@
     <Compile Include="Entity\BillsType.cs" />
     <Compile Include="Entity\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\BillsQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\" />
     <Folder Include="Enum\" />
-    <Folder Include="Query\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bill.Common\Bill.Common.csproj">
+      <Project>{004cb0bd-cfd8-4bfa-b2af-f23d1fdca17a}</Project>
+      <Name>Bill.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

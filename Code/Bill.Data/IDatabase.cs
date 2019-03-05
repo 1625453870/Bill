@@ -29,9 +29,18 @@ namespace Bill.Data
         /// <param name="total">数据总条数</param>
         /// <param name="para">参数化</param>
         /// <returns></returns>
-        IEnumerable<T> FindPageList<T>(string sql, PaginationQuery pagination, out int total, object para = null)
+        PaginationDTO<IEnumerable<T>> FindPageList<T>(string sql, PaginationQuery pagination, object para = null)
             where T : new();
 
+        /// <summary>
+        /// 分页查询-Lambda
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        /// <param name="pagination">分页实体</param>
+        /// <returns></returns>
+        PaginationDTO<IEnumerable<T>> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination)
+             where T : new();
         /// <summary>
         /// 集合查询-Lambda
         /// </summary>
@@ -40,17 +49,7 @@ namespace Bill.Data
         /// <returns></returns>
         IEnumerable<T> FindList<T>(Expression<Func<T, bool>> condition)
            where T : new();
-
-        /// <summary>
-        /// 集合查询-分页-Lambda
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="condition">表达式</param>
-        /// <param name="pagination">分页实体</param>
-        /// <param name="total">数据总条数</param>
-        /// <returns></returns>
-        IEnumerable<T> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination, out int total)
-             where T : class, new();
+        
 
         /// <summary>
         /// 实体查询

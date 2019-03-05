@@ -1,21 +1,14 @@
-﻿using Bill.Data;
+﻿using Bill.Common.LambdaToSQL;
+using Bill.Common.Model;
+using Dapper;
+using DapperExtensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System.Data;
-using DapperLambda;
-using Dapper;
-using Bill.Common.Model;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Linq.Expressions;
-using DapperExtensions;
-using Bill.Common.LambdaToSQL;
-using Bill.Common.Attribute;
-using System.Reflection;
 
 namespace Bill.Data.Dapper
 {
@@ -47,20 +40,6 @@ namespace Bill.Data.Dapper
 
         }
 
-
-        /// <summary>
-        /// 获取DapperLambda数据连接
-        /// </summary>
-        private DbContext Context
-        {
-            get
-            {
-                return new DbContext().ConnectionString(Nested.connString, DatabaseType.MSSQLServer);
-
-            }
-        }
-
-
         #endregion 属性
 
         #region 查询
@@ -81,12 +60,12 @@ namespace Bill.Data.Dapper
         }
 
         /// <summary>
-        /// 分页集合查询（Lambda）
+        /// 分页集合查询
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="condition"></param>
         /// <returns></returns>
-        public IEnumerable<T> FindPageList<T>(string sql, PaginationQuery pagination, out int total, object para = null)
+        public PaginationDTO<IEnumerable<T>> FindPageList<T>(string sql, PaginationQuery pagination, object para = null)
                where T : new()
         {
             using (var db = Connection)
@@ -112,9 +91,29 @@ Select * From (Select ROW_NUMBER() Over ({0})
 As rowNum, * From ({1}) As T ) As N Where rowNum > {2} And rowNum <= {3}
 ", orderBy, sql, (pagination.Page - 1) * pagination.Rows, pagination.Page * pagination.Rows);
                 string selectCountSql = "Select Count(*) From (" + sql + ") AS t";
-                total = (int)db.ExecuteScalar(selectCountSql, para);
-                return db.Query<T>(sqls, para).ToList();
+                return new PaginationDTO<IEnumerable<T>>
+                {
+                    Data = db.Query<T>(sqls, para).ToList(),
+                    Total = (int)db.ExecuteScalar(selectCountSql, para)
+                };
             }
+        }
+
+        /// <summary>
+        /// 分页查询-Lambda
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        /// <param name="pagination"></param>
+        /// <returns></returns>
+        public PaginationDTO<IEnumerable<T>> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination)
+            where T : new()
+        {
+            var lambda = new LambdaExpConditions<T>();
+            lambda.AddAndWhere(condition);
+            string where = lambda.Where();
+            string sql = DatabaseCommon.SelectSql<T>(where).ToString();
+            return FindPageList<T>(sql, pagination);
         }
 
         /// <summary>
@@ -134,22 +133,6 @@ As rowNum, * From ({1}) As T ) As N Where rowNum > {2} And rowNum <= {3}
             return this.FindList<T>(sql);
 
         }
-
-        /// <summary>
-        /// 分页集合查询（Lambda）
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="condition"></param>
-        /// <returns></returns>
-        public IEnumerable<T> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination, out int total)
-               where T : class, new()
-        {
-            using (var db = Context)
-            {
-                return db.Select<T>(condition).QueryPage(pagination.Page, pagination.Rows, out total);
-            }
-        }
-
 
         /// <summary>
         /// 查询实体对象
@@ -176,10 +159,11 @@ As rowNum, * From ({1}) As T ) As N Where rowNum > {2} And rowNum <= {3}
         public T FindEntity<T>(Expression<Func<T, bool>> condition)
             where T : class, new()
         {
-            using (var db = Context)
-            {
-                return db.Select(condition).QuerySingle();
-            }
+            var lambda = new LambdaExpConditions<T>();
+            lambda.AddAndWhere(condition);
+            string where = lambda.Where();
+            string sql = DatabaseCommon.SelectSql<T>(where).ToString();
+            return FindEntity<T>(sql);
         }
         #endregion
 

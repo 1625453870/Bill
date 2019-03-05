@@ -17,15 +17,15 @@ namespace Bill.Model.Entity
         /// <summary>
         /// 账单类型编码
         /// </summary>		
-        public int Name { get; set; }
+        public int BillsTypeId { get; set; }
         /// <summary>
         /// 金额
         /// </summary>		
-        public decimal Logo { get; set; }
+        public decimal Money { get; set; }
         /// <summary>
         /// 创建人编码
         /// </summary>		
-        public int NickName { get; set; }
+        public int UserId { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>		
@@ -34,6 +34,11 @@ namespace Bill.Model.Entity
         /// 描述
         /// </summary>		
         public string Describe { get; set; }
+
+        /// <summary>
+        /// 修改时间
+        /// </summary>
+        public DateTime UpdateTime { get; set; }
 
     }
 }
