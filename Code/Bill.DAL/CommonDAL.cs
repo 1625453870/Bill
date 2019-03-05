@@ -46,8 +46,20 @@ namespace Bill.DAL
         {
             return db.FindPageList(condition, pagination);
         }
+
+        /// <summary>
+        /// 查询数据条数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public int Count<T>(Expression<Func<T, bool>> condition)
+             where T : class, new()
+        {
+            return db.Count<T>(condition);
+        }
         #endregion
-        
+
         #region 新增
         /// <summary>
         /// 新增实体

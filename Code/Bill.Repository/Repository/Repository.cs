@@ -98,14 +98,27 @@ namespace Bill.Repository.Repository
         {
             return db.FindEntity<T>(condition);
         }
-        #endregion
 
-        #region 新增
         /// <summary>
-        /// 新增实体
+        /// 数据条数
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="t"></param>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public int Count<T>(Expression<Func<T, bool>> condition)
+            where T : class, new()
+        {
+            return db.Count<T>(condition);
+
+        }
+        #endregion
+
+            #region 新增
+            /// <summary>
+            /// 新增实体
+            /// </summary>
+            /// <typeparam name="T"></typeparam>
+            /// <param name="t"></param>
         public dynamic Insert<T>(T t) where T : class, new()
         {
             return db.Insert(t);

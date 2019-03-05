@@ -3,6 +3,10 @@
 })
 
 var bills = {
+    index: 1,
+    size: 15,
+    data: null,
+    count: 0,
     events() {
         $("#CreateTime a").click(function () {
             $("#StartDateTime").attr("value", bills.getTime($(this).attr("name")));
@@ -18,6 +22,8 @@ var bills = {
         $("#Add").click(function () {
             bills.openView();
         })
+        this.getData();
+        this.layer();
     },
 
     getTime(months) {
@@ -51,5 +57,71 @@ var bills = {
         }
         var btn2 = function (index) { }
         layerHelper.open(id ? "修改" : "新增", "/Bills/Edit?id=" + id, 2, ["400px", "500px"], ["确认", "取消"], [btn1, btn2])
+    },
+
+    layer() {
+        layui.use(['laydate', 'laypage', 'layer','table'], function () {
+            var laydate = layui.laydate,
+                laypage = layui.laypage,
+                layer = layui.layer,
+                table = layui.table;
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#StartDateTime' //指定元素
+            });
+            laydate.render({
+                elem: '#EndDateTime' //指定元素
+            });
+            //表格加载
+            table.render({
+                elem: '#Table '
+                //, height: 312
+                //, url: '/Bills/FindList' //数据接口
+                , page: true //开启分页
+                , cols: [[ //表头
+                    { field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left' }
+                    , { field: 'BillsTypeName', title: '账单类型', width: 80 }
+                    , { field: 'Money', title: '金额', width: 80 }
+                    , { field: 'Describe', title: '详情', width: 80 }
+                    , { field: 'UpdateTime', title: '创建时间', width: 177 }
+                ]]
+                , data: bills.data
+            });
+            $.post("/Bills/Count", {}, function () { })
+            //分页加载
+            laypage.render({
+                elem: 'Page'
+                , count: bills.count
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    bills.index++;
+                    getData();
+                    table.reload("Table", { //此处是上文提到的 初始化标识id
+                        where: {
+                            //key: { //该写法上文已经提到
+                            type: item.type, id: item.id
+                            //}
+                        }
+                    });
+                }
+            });
+
+
+        });
+    },
+
+    getData() {
+        $.post("/Bills/FindList", {
+            StartDateTime: $("#StartDateTime").val(),
+            EndDateTime: $("#EndDateTime").val(),
+            BillsTypeId: $("#BillsTypeId").val(),
+            Pagination: {
+                Page: bills.index,
+                Rows: bills.size
+            }
+        }, function (res) {
+            bills.data = res.Data;
+            bills.count = res.Total;
+        })
     }
 };

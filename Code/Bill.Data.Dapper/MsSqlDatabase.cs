@@ -165,6 +165,25 @@ As rowNum, * From ({1}) As T ) As N Where rowNum > {2} And rowNum <= {3}
             string sql = DatabaseCommon.SelectSql<T>(where).ToString();
             return FindEntity<T>(sql);
         }
+
+        /// <summary>
+        /// 数据条数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public int Count<T>(Expression<Func<T, bool>> condition)
+            where T : class, new()
+        {
+            var lambda = new LambdaExpConditions<T>();
+            lambda.AddAndWhere(condition);
+            string where = lambda.Where();
+            string sql = DatabaseCommon.SelectSql<T>(where).ToString();
+            using (var db = Connection)
+            {
+                return db.Execute(sql);
+            }
+        }
         #endregion
 
         #region 新增

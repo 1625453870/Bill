@@ -69,9 +69,18 @@ namespace Bill.Data
         /// <returns></returns>
         T FindEntity<T>(Expression<Func<T, bool>> condition)
             where T : class, new();
+
+        /// <summary>
+        /// 数据条数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        int Count<T>(Expression<Func<T, bool>> condition)
+           where T : class, new();
         #endregion
 
-        #region 新增
+            #region 新增
         /// <summary>
         /// 新增实体
         /// </summary>

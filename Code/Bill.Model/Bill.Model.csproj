@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\BillsDTO.cs" />
     <Compile Include="Entity\Bills.cs" />
     <Compile Include="Entity\BillsType.cs" />
     <Compile Include="Entity\Users.cs" />
@@ -48,7 +49,6 @@
     <Compile Include="Query\BillsQuery.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\" />
     <Folder Include="Enum\" />
   </ItemGroup>
   <ItemGroup>

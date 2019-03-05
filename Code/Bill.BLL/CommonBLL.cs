@@ -62,6 +62,18 @@ namespace Bill.BLL
         {
             return dal.FindPageList(condition, pagination);
         }
+
+        /// <summary>
+        /// 查询数据条数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public int Count<T>(Expression<Func<T, bool>> condition)
+            where T : class, new()
+        {
+            return dal.Count<T>(condition);
+        }
         #endregion
 
         #region 新增

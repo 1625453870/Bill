@@ -2,6 +2,9 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Data;
+using Bill.Common;
+using Bill.Common.Extension;
+
 namespace Bill.Model.Entity
 {
     /// <summary>
@@ -25,11 +28,11 @@ namespace Bill.Model.Entity
         /// <summary>
         /// 创建人编码
         /// </summary>		
-        public int UserId { get; set; }
+        public int UserId { get; set; } = CookieHelper.UserId.ToInt32();
         /// <summary>
         /// 创建时间
         /// </summary>		
-        public DateTime CreationTime { get; set; }
+        public DateTime CreationTime { get; set; } = DateTime.Now;
         /// <summary>
         /// 描述
         /// </summary>		
@@ -38,7 +41,7 @@ namespace Bill.Model.Entity
         /// <summary>
         /// 修改时间
         /// </summary>
-        public DateTime UpdateTime { get; set; }
+        public DateTime UpdateTime { get; set; } = DateTime.Now;
 
     }
 }

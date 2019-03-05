@@ -16,6 +16,7 @@ namespace Bill.Web.Controllers
     public class BillsController : Controller
     {
         private CommonBLL commonbll = new CommonBLL();
+        private BillsBLL billsbll = new BillsBLL();
         // GET: Bills
         public ActionResult Index()
         {
@@ -39,17 +40,11 @@ namespace Bill.Web.Controllers
         /// <returns></returns>
         public ActionResult FindList(BillsQuery query)
         {
-            if (query.MonthNumber > 0)
-            {
-                query.StartDateTime = DateTime.Now.AddMonths(0 - query.MonthNumber);
-            }
-            Expression<Func<Bills, bool>> expression = p => p.UpdateTime >= query.StartDateTime && p.UpdateTime <= query.EndDateTime;
-            if (query.BillsTypes > 0)
-            {
-                expression = expression.And(p => p.BillsTypeId == query.BillsTypes);
-            }
-            return Json(commonbll.FindPageList<Bills>(expression, query.Page));
+            
+            return Json(billsbll.FindPageList(query, query.Pagination));
         }
+
+       
 
         /// <summary>
         /// 编辑
@@ -63,6 +58,21 @@ namespace Bill.Web.Controllers
             }
             else
                 commonbll.Insert<Bills>(model);
+        }
+
+        /// <summary>
+        /// 得到数据总数
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public ActionResult Count(BillsQuery query)
+        {
+            Expression<Func<Bills, bool>> expression = p => p.UpdateTime >= query.StartDateTime && p.UpdateTime <= query.EndDateTime;
+            if (query.BillsTypeId > 0)
+            {
+                expression = expression.And(p => p.BillsTypeId == query.BillsTypeId);
+            }
+            return Content(commonbll.Count<Bills>(expression).ToString());
         }
 
         /// <summary>
