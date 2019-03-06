@@ -2,11 +2,30 @@
 @{
     Layout = "~/Views/Shared/_Layout_Layer_Open.cshtml";
     Page.Title = "首页";
+    var billsTypeList = new Bill.Web.Controllers.BillsTypeController().FindList().ToList();
 }
 <link href="~/Content/Css/login.css" rel="stylesheet" />
 <link href="~/Content/Css/billsType.css" rel="stylesheet" />
 <script src="~/Content/Scripts/Bill/BillsTypeEdit.js"></script>
 <div class="layui-form register_form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型</label>
+        <div class="layui-input-block">
+            <select name="BillsTypeId" id="BillsTypeId" lay-verify="required">
+                @foreach (var item in billsTypeList)
+                {
+                    if (billsTypeList.IndexOf(item) == 0)
+                    {
+                        <option value="@item.Id" selected="selected">@item.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">时间</label>
         <div class="layui-input-block">
@@ -29,7 +48,7 @@
 </div>
 
 <script>
-    layui.use('laydate', function () {
+    layui.use(['laydate', 'form'], function () {
         var laydate = layui.laydate;
 
         //执行一个laydate实例

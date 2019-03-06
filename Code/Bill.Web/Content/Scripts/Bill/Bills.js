@@ -6,7 +6,7 @@ var bills = {
     index: 1,
     size: 15,
     data: null,
-    count: 0,
+    count: 15,
     events() {
         $("#CreateTime a").click(function () {
             $("#StartDateTime").attr("value", bills.getTime($(this).attr("name")));
@@ -23,7 +23,6 @@ var bills = {
             bills.openView();
         })
         this.getData();
-        this.layer();
     },
 
     getTime(months) {
@@ -73,22 +72,6 @@ var bills = {
                 elem: '#EndDateTime' //指定元素
             });
 
-            //表格加载
-            table.render({
-                elem: '#Table '
-                //, height: 312
-                //, url: '/Bills/FindList' //数据接口
-               // , page: true //开启分页
-                , cols: [[ //表头
-                    { field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left' }
-                    , { field: 'BillsTypeName', title: '账单类型', width: 80 }
-                    , { field: 'Money', title: '金额', width: 80 }
-                    , { field: 'Describe', title: '详情', width: 80 }
-                    , { field: 'UpdateTime', title: '创建时间', width: 177 }
-                ]]
-                , data: bills.data
-            });
-
             //分页加载
             laypage.render({
                 elem: 'Page'
@@ -96,16 +79,36 @@ var bills = {
                 , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
                 , jump: function (obj) {
                     bills.index++;
-                    getData();
-                    table.reload("Table", { //此处是上文提到的 初始化标识id
-                        where: {
-                            //key: { //该写法上文已经提到
-                            type: item.type, id: item.id
-                            //}
-                        }
-                    });
+                    bills.getData();
                 }
             });
+
+
+        });
+    },
+
+    layerTable() {
+        layui.use('table', function () {
+            var table = layui.table;
+
+
+            //表格加载
+            table.render({
+                elem: '#Table '
+                //, height: 312
+                //, url: '/Bills/FindList' //数据接口
+                // , page: true //开启分页
+                , cols: [[ //表头
+                    { field: 'BillsTypeName', title: '账单类型', width: "15%" }
+                    , { field: 'Money', title: '金额', width: "15%" }
+                    , { field: 'Describe', title: '详情', width: "30%" }
+                    , { field: 'UpdateTime', title: '创建时间', width: "25%" }
+                    , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: "15%" }
+                ]]
+                , data: bills.data
+            });
+
+
 
 
         });
@@ -123,6 +126,7 @@ var bills = {
         }, function (res) {
             bills.data = res.Data;
             bills.count = res.Total;
+            bills.layerTable();
         })
     }
 };
