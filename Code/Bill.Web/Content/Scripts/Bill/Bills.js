@@ -60,7 +60,7 @@ var bills = {
     },
 
     layer() {
-        layui.use(['laydate', 'laypage', 'layer','table'], function () {
+        layui.use(['laydate', 'laypage', 'layer', 'table'], function () {
             var laydate = layui.laydate,
                 laypage = layui.laypage,
                 layer = layui.layer,
@@ -72,12 +72,13 @@ var bills = {
             laydate.render({
                 elem: '#EndDateTime' //指定元素
             });
+
             //表格加载
             table.render({
                 elem: '#Table '
                 //, height: 312
                 //, url: '/Bills/FindList' //数据接口
-                , page: true //开启分页
+               // , page: true //开启分页
                 , cols: [[ //表头
                     { field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left' }
                     , { field: 'BillsTypeName', title: '账单类型', width: 80 }
@@ -87,7 +88,7 @@ var bills = {
                 ]]
                 , data: bills.data
             });
-            $.post("/Bills/Count", {}, function () { })
+
             //分页加载
             laypage.render({
                 elem: 'Page'
