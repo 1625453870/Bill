@@ -23,5 +23,10 @@ namespace Bill.BLL
         {
             return dal.FindPageList(query, pagination);
         }
+
+        public IEnumerable<BillsDTO> FindMonth()
+        {
+            return dal.FindMonth();
+        }
     }
 }

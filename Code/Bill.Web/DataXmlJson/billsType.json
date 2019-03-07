@@ -1,0 +1,37 @@
+﻿[
+  {
+    "Name": "餐饮",
+    "Logo": "/Images/BillsTypeImg/canyin.png",
+    "Describe": "餐饮",
+    "IsDefault": true,
+    "IsSystem": true
+  },
+  {
+    "Name": "购物",
+    "Logo": "/Images/BillsTypeImg/gouwu.png",
+    "Describe": "购物",
+    "IsDefault": false,
+    "IsSystem": true
+  },
+  {
+    "Name": "通讯",
+    "Logo": "/Images/BillsTypeImg/tongxun.png",
+    "Describe": "通讯",
+    "IsDefault": false,
+    "IsSystem": true
+  },
+  {
+    "Name": "零食",
+    "Logo": "/Images/BillsTypeImg/lingshi.png",
+    "Describe": "餐饮",
+    "IsDefault": false,
+    "IsSystem": true
+  },
+  {
+    "Name": "一般",
+    "Logo": "/Images/BillsTypeImg/yiban.png",
+    "Describe": "一般",
+    "IsDefault": false,
+    "IsSystem": true
+  }
+]

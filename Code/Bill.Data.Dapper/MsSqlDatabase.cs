@@ -286,6 +286,24 @@ As rowNum, * From ({1}) As T ) As N Where rowNum > {2} And rowNum <= {3}
                 db.Execute(sql, para);
             }
         }
+
+        /// <summary>
+        /// lambdas删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        public void Delete<T>(Expression<Func<T, bool>> condition)
+            where T : class, new()
+        {
+            var lambda = new LambdaExpConditions<T>();
+            lambda.AddAndWhere(condition);
+            string where = lambda.Where();
+            string sql = DatabaseCommon.DeleteSql<T>(where).ToString();
+            using (var db = Connection)
+            {
+                db.Execute(sql);
+            }
+        }
         #endregion
 
 

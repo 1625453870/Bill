@@ -14,7 +14,7 @@
             <select name="BillsTypeId" id="BillsTypeId" lay-verify="required">
                 @foreach (var item in billsTypeList)
                 {
-                    if (billsTypeList.IndexOf(item) == 0)
+                    if ((Model.Id <= 0 && item.IsDefault) || Model.BillsTypeId == item.Id)
                     {
                         <option value="@item.Id" selected="selected">@item.Name</option>
                     }

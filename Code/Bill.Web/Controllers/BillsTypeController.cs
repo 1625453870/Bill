@@ -20,10 +20,10 @@ namespace Bill.Web.Controllers
             return View(FindList());
         }
 
-        public IEnumerable<BillsType>  FindList()
+        public IEnumerable<BillsType> FindList()
         {
             var userId = CookieHelper.UserId.ToInt32();
-            return commonbll.FindList<BillsType>(p => p.UserId == userId);
+            return commonbll.FindList<BillsType>(p => p.UserId == userId || p.IsSystem == true);
         }
 
         public ActionResult Edit(int? id)
@@ -48,7 +48,7 @@ namespace Bill.Web.Controllers
 
         public void Delete(int id)
         {
-            commonbll.Delete<BillsType>(new BillsType { Id = id });
+            commonbll.Delete<BillsType>(p => p.Id == id && p.IsSystem != true);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿@model List<Bill.Model.Entity.BillsType>
 @{
+    /**/
+
     Layout = "~/Views/Shared/_Layout.cshtml";
     Page.Title = "账单类型";
 }
@@ -20,20 +22,22 @@
         @foreach (var item in Model)
         {
             var imgsrc = !item.Logo.IsEmpty() ? item.Logo : "http://t.cn/RCzsdCq";
-        <div class="content">
-            <a>
-                <img src="~/Images/shanchu.png" class="delete_img" name="@item.Id"/>
-            </a>
-            
-            <a href="javascript:;" name="@item.Id" class="imgContenta">
-                <div class="imgContent">
-                    <img src="@imgsrc" class="layui-nav-img img">
-                    <div style="text-align:center;">
-                        <span>@item.Name</span>
+            <div class="content">
+                @if (!item.IsSystem)
+                {
+                    <a>
+                        <img src="~/Images/shanchu.png" class="delete_img" name="@item.Id" />
+                    </a>
+                }
+                <a href="javascript:;" name="@item.Id" class="imgContenta" isSys="@item.IsSystem">
+                    <div class="imgContent">
+                        <img src="@imgsrc" class="layui-nav-img img">
+                        <div style="text-align:center;">
+                            <span>@item.Name</span>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
         }
 
 

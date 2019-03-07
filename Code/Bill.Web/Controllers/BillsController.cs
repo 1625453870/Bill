@@ -31,7 +31,7 @@ namespace Bill.Web.Controllers
             }
             return PartialView(new Bills());
         }
-        
+
 
         /// <summary>
         /// 查询
@@ -40,11 +40,22 @@ namespace Bill.Web.Controllers
         /// <returns></returns>
         public ActionResult FindList(BillsQuery query)
         {
-            
-            return Json(billsbll.FindPageList(query, query.Pagination));
+            query.Pagination.Page += 1;
+            var data = billsbll.FindPageList(query, query.Pagination);
+            var result = new
+            {
+                code = 0,
+                msg = "",
+                count = data.Total,
+                data = data.Data
+            };
+            return Json(result);
         }
 
-       
+        public ActionResult GetNowMonth()
+        {
+            return Json(billsbll.FindMonth());
+        }
 
         /// <summary>
         /// 编辑
@@ -83,6 +94,6 @@ namespace Bill.Web.Controllers
         {
             commonbll.Delete<Bills>(new Bills { Id = id });
         }
-        
+
     }
 }

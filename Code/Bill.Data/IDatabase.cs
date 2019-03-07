@@ -49,7 +49,7 @@ namespace Bill.Data
         /// <returns></returns>
         IEnumerable<T> FindList<T>(Expression<Func<T, bool>> condition)
            where T : new();
-        
+
 
         /// <summary>
         /// 实体查询
@@ -80,7 +80,7 @@ namespace Bill.Data
            where T : class, new();
         #endregion
 
-            #region 新增
+        #region 新增
         /// <summary>
         /// 新增实体
         /// </summary>
@@ -135,6 +135,14 @@ namespace Bill.Data
         /// <param name="sql"></param>
         /// <param name="para"></param>
         void Delete(string sql, object para = null);
+
+        /// <summary>
+        /// lambdas删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        void Delete<T>(Expression<Func<T, bool>> condition)
+            where T : class, new();
         #endregion
     }
 }

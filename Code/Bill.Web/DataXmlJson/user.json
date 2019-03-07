@@ -1,0 +1,10 @@
+﻿[
+  {
+    "Name": "admin",
+    "Pwd": "admin123456",
+    "NickName": "默认账户",
+    "Logo": "/",
+    "Describe": "默认账户",
+    "IsSystem": true
+  }
+]

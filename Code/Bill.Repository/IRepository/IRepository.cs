@@ -41,8 +41,8 @@ namespace Bill.Repository.IRepository
         /// <param name="total">数据总条数</param>
         /// <param name="para">参数化</param>
         /// <returns></returns>
-         PaginationDTO<IEnumerable<T>> FindPageList<T>(string sql, PaginationQuery pagination, object para = null)
-             where T : new();
+        PaginationDTO<IEnumerable<T>> FindPageList<T>(string sql, PaginationQuery pagination, object para = null)
+            where T : new();
 
         /// <summary>
         /// 分页查询-Lambda
@@ -51,8 +51,8 @@ namespace Bill.Repository.IRepository
         /// <param name="condition"></param>
         /// <param name="pagination">分页实体</param>
         /// <returns></returns>
-         PaginationDTO<IEnumerable<T>> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination)
-             where T : new();
+        PaginationDTO<IEnumerable<T>> FindPageList<T>(Expression<Func<T, bool>> condition, PaginationQuery pagination)
+            where T : new();
 
         /// <summary>
         /// 集合查询-Lambda
@@ -63,7 +63,7 @@ namespace Bill.Repository.IRepository
         IEnumerable<T> FindList<T>(Expression<Func<T, bool>> condition)
            where T : new();
 
-      
+
 
         /// <summary>
         /// 实体查询
@@ -94,7 +94,7 @@ namespace Bill.Repository.IRepository
            where T : class, new();
         #endregion
 
-            #region 新增
+        #region 新增
         /// <summary>
         /// 新增实体
         /// </summary>
@@ -149,6 +149,13 @@ namespace Bill.Repository.IRepository
         /// <param name="sql"></param>
         /// <param name="para"></param>
         void Delete(string sql, object para = null);
+        /// <summary>
+        /// lambdas删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+         void Delete<T>(Expression<Func<T, bool>> condition)
+            where T : class, new();
         #endregion
 
 

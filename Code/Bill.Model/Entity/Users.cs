@@ -44,6 +44,13 @@ namespace Bill.Model.Entity
         /// </summary>		
         public string Describe { get; set; }
 
+
+        /// <summary>
+        /// 是否是系统自动生成
+        /// </summary>
+        public bool IsSystem { get; set; }
+
+
     }
 }
 

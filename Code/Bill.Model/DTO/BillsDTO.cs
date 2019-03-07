@@ -13,5 +13,7 @@ namespace Bill.Model.DTO
         /// 账单类型名称
         /// </summary>
         public string BillsTypeName { get; set; }
+
+        public string DateTime { get; set; }
     }
 }

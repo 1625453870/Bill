@@ -13,19 +13,21 @@ namespace Bill.Web.Controllers
     public class LoginController : Controller
     {
         private CommonBLL commonbll = new CommonBLL();
+        private UsersBLL userbll = new UsersBLL();
         // GET: Login
         public ActionResult Login()
         {
             return PartialView();
         }
 
-        public ActionResult Register() {
+        public ActionResult Register()
+        {
             return PartialView();
         }
 
         public ActionResult LoginUser(Users user)
         {
-            var model=commonbll.FindEntity<Users>(p => p.Name == user.Name);
+            var model = commonbll.FindEntity<Users>(p => p.Name == user.Name);
 
             if (model.Pwd == user.Pwd.GetMD5(model.RandomCode))
             {
@@ -36,9 +38,7 @@ namespace Bill.Web.Controllers
 
         public ActionResult RegisterUser(Users user)
         {
-            user.RandomCode = PublicHelper.MD5Number();
-            user.Pwd = user.Pwd.GetMD5(user.RandomCode);
-           var aa= commonbll.Insert<Users>(user);
+            userbll.Insert(user);
             return Json(user);
         }
     }

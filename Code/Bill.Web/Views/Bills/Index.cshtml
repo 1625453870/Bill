@@ -32,7 +32,7 @@
 
         <div class="z_content type" id="BillsType">
             <strong>分类：</strong>
-            <a name="0" class="bills_selected">全部</a>
+            <a name="" class="bills_selected">全部</a>
             @foreach (var item in billsTypeList)
             {
                 <a name="@item.Id">@item.Name</a>
@@ -44,12 +44,12 @@
     </div>
     <div class="div_head div_content">
         <div class="div_head div_head_content">
-            <table class="layui-table" id="Table"></table>
+            <table class="layui-table" id="Table" lay-filter="table"></table>
             <div id="Page"></div>
         </div>
     </div>
 </div>
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+<script type="text/html" id="0peration">
+    <a class="layui-btn layui-btn-xs" lay-event="edit" id="Edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" id="Delete">删除</a>
 </script>

@@ -44,5 +44,21 @@ namespace Bill.Data
             strSql = string.Format(strSql, sbColumns.ToString(), table + " ", where);
             return new StringBuilder(strSql);
         }
+
+        /// <summary>
+        /// 拼接删除语句
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="where"></param>
+        /// <param name="allFieid"></param>
+        /// <returns></returns>
+        public static StringBuilder DeleteSql<T>(string where, bool allFieid = false) where T : new()
+        {
+            if (string.IsNullOrWhiteSpace(where)) where = " WHERE 1 = 1";
+            //表名
+            string table = EntityAttributeHelper.GetEntityTable<T>();
+            var sql = $"DELETE FROM {table} {where}";
+            return new StringBuilder(sql);
+        }
     }
 }

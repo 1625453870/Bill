@@ -126,6 +126,17 @@ namespace Bill.BLL
         {
             return dal.Delete(t);
         }
+
+        /// <summary>
+        ///lambda删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        public void Delete<T>(Expression<Func<T, bool>> condition)
+            where T:class,new()
+        {
+             dal.Delete<T>(condition);
+        }
         #endregion
     }
 }

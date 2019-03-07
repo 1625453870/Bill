@@ -110,6 +110,17 @@ namespace Bill.DAL
         {
             return db.Delete(t);
         }
+
+        /// <summary>
+        ///lambda删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        public void Delete<T>(Expression<Func<T, bool>> condition)
+            where T : class, new()
+        {
+            db.Delete<T>(condition);
+        }
         #endregion
     }
 }

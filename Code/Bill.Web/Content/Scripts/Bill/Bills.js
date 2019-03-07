@@ -3,26 +3,27 @@
 })
 
 var bills = {
-    index: 1,
-    size: 15,
-    data: null,
-    count: 15,
     events() {
         $("#CreateTime a").click(function () {
             $("#StartDateTime").attr("value", bills.getTime($(this).attr("name")));
             $("#CreateTime a").removeClass("bills_selected");
             $(this).addClass("bills_selected");
+            bills.layer();
         });
 
         $("#BillsType a").click(function () {
             $("#BillsType a").removeClass("bills_selected");
             $(this).addClass("bills_selected");
+            $("#BillsTypeId").val($(this).attr("name"));
+            bills.layer();
         })
 
         $("#Add").click(function () {
             bills.openView();
         })
-        this.getData();
+
+
+        this.layer();
     },
 
     getTime(months) {
@@ -42,16 +43,15 @@ var bills = {
             var body = layer.getChildFrame('body', index);
             $.post("/Bills/EditData", {
                 Id: body.find("#Id").val(),
+                BillsTypeId: body.find("#BillsTypeId").val(),
                 Money: body.find("#Money").val(),
                 UpdateTime: body.find("#UpdateTime").val(),
                 Describe: body.find("#Describe").val(),
             }, function () {
                 layer.msg(!id ? '创建成功！' : "修改成功", { icon: 6 });
             })
-            setTimeout(function () {
-                layer.close(index);
-                window.location.reload();
-            }, 1000)
+            layer.close(index);
+            bills.layer();
 
         }
         var btn2 = function (index) { }
@@ -59,11 +59,10 @@ var bills = {
     },
 
     layer() {
-        layui.use(['laydate', 'laypage', 'layer', 'table'], function () {
+        layui.use(['laydate', 'table'], function () {
             var laydate = layui.laydate,
-                laypage = layui.laypage,
-                layer = layui.layer,
                 table = layui.table;
+
             //执行一个laydate实例
             laydate.render({
                 elem: '#StartDateTime' //指定元素
@@ -72,14 +71,45 @@ var bills = {
                 elem: '#EndDateTime' //指定元素
             });
 
-            //分页加载
-            laypage.render({
-                elem: 'Page'
-                , count: bills.count
-                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
-                , jump: function (obj) {
-                    bills.index++;
-                    bills.getData();
+            //表格加载
+            table.render({
+                elem: '#Table '
+                , method: "post"
+                //, height: 312
+                , url: '/Bills/FindList' //数据接口
+                , page: true //开启分页
+                , where: {
+                    StartDateTime: $("#StartDateTime").val(),
+                    EndDateTime: $("#EndDateTime").val(),
+                    BillsTypeId: $("#BillsTypeId").val(),
+                    Pagination: {
+                        Page: 'curr',
+                        Rows: 15
+                    }
+                }
+                , cols: [[ //表头
+                    { field: 'BillsTypeName', title: '账单类型', width: "15%" }
+                    , { field: 'Money', title: '金额', width: "15%" }
+                    , { field: 'Describe', title: '详情', width: "30%" }
+                    , { field: 'DateTime', title: '创建时间', width: "25%" }
+                    , { fixed: 'right', title: '操作', toolbar: '#0peration', width: "15%" }
+                ]]
+            });
+
+            table.on('tool(table)', function (obj) {
+                var data = obj.data;
+
+                console.log(data);
+                if (obj.event === 'del') {
+                    layer.confirm('真的删除数据吗，该操作不可回执？', function (index) {
+                        $.get("/Bills/Delete?id=" + data.Id, function () {
+                            obj.del();
+                            layer.close(index);
+                        })
+
+                    });
+                } else if (obj.event === 'edit') {
+                    bills.openView(data.Id);
                 }
             });
 
@@ -87,46 +117,5 @@ var bills = {
         });
     },
 
-    layerTable() {
-        layui.use('table', function () {
-            var table = layui.table;
 
-
-            //表格加载
-            table.render({
-                elem: '#Table '
-                //, height: 312
-                //, url: '/Bills/FindList' //数据接口
-                // , page: true //开启分页
-                , cols: [[ //表头
-                    { field: 'BillsTypeName', title: '账单类型', width: "15%" }
-                    , { field: 'Money', title: '金额', width: "15%" }
-                    , { field: 'Describe', title: '详情', width: "30%" }
-                    , { field: 'UpdateTime', title: '创建时间', width: "25%" }
-                    , { fixed: 'right', title: '操作', toolbar: '#barDemo', width: "15%" }
-                ]]
-                , data: bills.data
-            });
-
-
-
-
-        });
-    },
-
-    getData() {
-        $.post("/Bills/FindList", {
-            StartDateTime: $("#StartDateTime").val(),
-            EndDateTime: $("#EndDateTime").val(),
-            BillsTypeId: $("#BillsTypeId").val(),
-            Pagination: {
-                Page: bills.index,
-                Rows: bills.size
-            }
-        }, function (res) {
-            bills.data = res.Data;
-            bills.count = res.Total;
-            bills.layerTable();
-        })
-    }
 };

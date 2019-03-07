@@ -41,8 +41,8 @@ namespace Bill.Repository.Repository
         /// <param name="total">数据总条数</param>
         /// <param name="para">参数化</param>
         /// <returns></returns>
-       public PaginationDTO<IEnumerable<T>> FindPageList<T>(string sql, PaginationQuery pagination, object para = null)
-            where T : new()
+        public PaginationDTO<IEnumerable<T>> FindPageList<T>(string sql, PaginationQuery pagination, object para = null)
+             where T : new()
         {
             return db.FindPageList<T>(sql, pagination, para);
         }
@@ -72,7 +72,7 @@ namespace Bill.Repository.Repository
             return db.FindList<T>(condition);
         }
 
-      
+
 
         /// <summary>
         /// 查询实体对象
@@ -113,12 +113,12 @@ namespace Bill.Repository.Repository
         }
         #endregion
 
-            #region 新增
-            /// <summary>
-            /// 新增实体
-            /// </summary>
-            /// <typeparam name="T"></typeparam>
-            /// <param name="t"></param>
+        #region 新增
+        /// <summary>
+        /// 新增实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
         public dynamic Insert<T>(T t) where T : class, new()
         {
             return db.Insert(t);
@@ -188,6 +188,17 @@ namespace Bill.Repository.Repository
         public void Delete(string sql, object para = null)
         {
             db.Delete(sql, para);
+        }
+
+        /// <summary>
+        /// lambdas删除
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="condition"></param>
+        public void Delete<T>(Expression<Func<T, bool>> condition)
+            where T : class, new()
+        {
+            db.Delete<T>(condition);
         }
         #endregion
     }

@@ -47,7 +47,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LitJSON, Version=0.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.13.0\lib\net45\LitJSON.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -101,9 +107,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -142,6 +145,7 @@
   <ItemGroup>
     <Content Include="Content\Css\Bills.css" />
     <Content Include="Content\Css\billsType.css" />
+    <Content Include="Content\Css\homeIndex.css" />
     <Content Include="Content\Css\login.css" />
     <Content Include="Content\Css\main.css" />
     <Content Include="Content\Scripts\Bill\Bills.js" />
@@ -257,6 +261,7 @@
     <Content Include="Content\Scripts\layui\lay\modules\tree.js" />
     <Content Include="Content\Scripts\layui\lay\modules\upload.js" />
     <Content Include="Content\Scripts\layui\lay\modules\util.js" />
+    <Content Include="Content\Scripts\EChart\echarts.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,6 +278,12 @@
     <Content Include="Images\b151f8198618367a9bde864b2e738bd4b21ce5d5.jpg" />
     <Content Include="Images\banner.jpg" />
     <Content Include="Images\bg.jpeg" />
+    <Content Include="Images\BillsTypeImg\canyin.png" />
+    <Content Include="Images\BillsTypeImg\gouwu.png" />
+    <Content Include="Images\BillsTypeImg\jiaotong.png" />
+    <Content Include="Images\BillsTypeImg\lingshi.png" />
+    <Content Include="Images\BillsTypeImg\tongxun.png" />
+    <Content Include="Images\BillsTypeImg\yiban.png" />
     <Content Include="Images\jia.png" />
     <Content Include="Images\login.png" />
     <Content Include="Images\pn1.jpg" />
@@ -286,6 +297,7 @@
     <Content Include="Content\Scripts\layui\font\iconfont.eot" />
     <Content Include="Content\Scripts\layui\font\iconfont.ttf" />
     <Content Include="Content\Scripts\layui\font\iconfont.woff" />
+    <Content Include="DataXmlJson\user.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -310,8 +322,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="XmlConfig\connectionStrings.config" />
     <Content Include="XmlConfig\appSettings.config" />
@@ -326,6 +336,7 @@
     <Content Include="Views\BillsType\Edit.cshtml" />
     <Content Include="Views\Bills\Index.cshtml" />
     <Content Include="Views\Bills\Edit.cshtml" />
+    <Content Include="DataXmlJson\billsType.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

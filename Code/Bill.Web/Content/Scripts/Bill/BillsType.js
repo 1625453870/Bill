@@ -3,6 +3,8 @@
         billsType.openView();
     })
     $(".content .imgContenta").click(function () {
+        if ($(this).attr("isSys"))
+            return;
         var id = $(this).attr("name");
         billsType.openView(id);
     })

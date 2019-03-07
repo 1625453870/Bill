@@ -44,6 +44,7 @@
     <Compile Include="BillsBLL.cs" />
     <Compile Include="CommonBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsersBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bill.Common\Bill.Common.csproj">
