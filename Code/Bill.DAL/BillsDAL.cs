@@ -36,18 +36,21 @@ WHERE 1=1 {0}
         /// 当月数据
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<BillsDTO> FindMonth()
+        public IEnumerable<BillsDTO> FindMonth(BillsQuery query)
         {
+            var where = string.Empty;
+            if (query.StartDateTime.HasValue)
+                where += "AND (a.UpdateTime BETWEEN @StartDateTime AND @EndDateTime)";
             var sql = @"
 SELECT a.* , b.Name AS BillsTypeName
 FROM Bills a
 JOIN BillsType b ON a.BillsTypeId =b.Id
-WHERE a.UpdateTime BETWEEN @StartDateTime AND @EndDateTime AND a.UserId =@UserId
-";
+WHERE a.UserId =@UserId {0}
+".FormatMe(where);
             return db.FindList<BillsDTO>(sql, new
             {
-                StartDateTime = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd").ToDateTime(),
-                EndDateTime = DateTime.Now,
+                StartDateTime =query.StartDateTime,
+                EndDateTime = query.EndDateTime,
                 UserId = CookieHelper.UserId.ToString()
             });
         }

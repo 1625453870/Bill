@@ -14,6 +14,13 @@
             return null;
         }
     },
+   
+    delCookie(name) {
+        cookieHelper.setCookie("Id", "",-31);
+        cookieHelper.setCookie("Name", "", -31);
+        cookieHelper.setCookie("Logo", "", -31);
+        cookieHelper.setCookie("NickName", "", -31);
+    },
     setUserCookie(data) {
         if (data.Id)
             cookieHelper.setCookie("Id", data.Id);

@@ -33,5 +33,12 @@
     "Describe": "一般",
     "IsDefault": false,
     "IsSystem": true
+  },
+  {
+    "Name": "交通",
+    "Logo": "/Images/BillsTypeImg/jiaotong.png",
+    "Describe": "一般",
+    "IsDefault": false,
+    "IsSystem": true
   }
 ]

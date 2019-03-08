@@ -1,9 +1,17 @@
-﻿.chart_circle {
+﻿.chart_circle_left {
     margin: auto;
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 0;
     bottom: 0;
-    width:45%;
+    width: 45%;
 }
 
+.chart_circle_rigth {
+    margin: auto;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    bottom: 0;
+    width: 45%;
+}

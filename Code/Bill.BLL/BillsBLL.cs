@@ -24,9 +24,9 @@ namespace Bill.BLL
             return dal.FindPageList(query, pagination);
         }
 
-        public IEnumerable<BillsDTO> FindMonth()
+        public IEnumerable<BillsDTO> FindMonth(BillsQuery query)
         {
-            return dal.FindMonth();
+            return dal.FindMonth(query);
         }
     }
 }

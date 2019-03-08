@@ -46,9 +46,12 @@ namespace Bill.Web.Controllers
                 commonbll.Update(model);
         }
 
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            if (commonbll.FindList<Bills>(p => p.BillsTypeId == id).Count() > 0)
+                return Content("该类型不可删除，存在相关账单信息！");
             commonbll.Delete<BillsType>(p => p.Id == id && p.IsSystem != true);
+            return Content("true");
         }
     }
 }

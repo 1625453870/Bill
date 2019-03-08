@@ -2,6 +2,7 @@
 using Bill.Common;
 using Bill.Common.Extension;
 using Bill.Common.Model;
+using Bill.Model.DTO;
 using Bill.Model.Entity;
 using Bill.Model.Query;
 using System;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace Bill.Web.Controllers
 {
@@ -41,6 +43,8 @@ namespace Bill.Web.Controllers
         public ActionResult FindList(BillsQuery query)
         {
             query.Pagination.Page += 1;
+            query.Pagination.Sord = "desc";
+            query.Pagination.Sidx = "UpdateTime";
             var data = billsbll.FindPageList(query, query.Pagination);
             var result = new
             {
@@ -52,9 +56,47 @@ namespace Bill.Web.Controllers
             return Json(result);
         }
 
-        public ActionResult GetNowMonth()
+        public ActionResult GetNowMonth_Left()
         {
-            return Json(billsbll.FindMonth());
+            var data = billsbll.FindMonth(new BillsQuery { StartDateTime = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd").ToDateTime(), EndDateTime = DateTime.Now });
+            var dict = new Dictionary<string, decimal>();
+            data.ToList().ForEach(p =>
+            {
+                if (dict.ContainsKey(p.BillsTypeName))
+                    dict[p.BillsTypeName] = dict[p.BillsTypeName] + p.Money;
+                else
+                    dict[p.BillsTypeName] = p.Money;
+            });
+            return Json(dict);
+        }
+
+        public ActionResult GetNowMonth_Rigth()
+        {
+            var data = billsbll.FindMonth(new BillsQuery { StartDateTime = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd").ToDateTime(), EndDateTime = DateTime.Now });
+            var dict = new Dictionary<string, Dictionary<string, decimal>>();
+            var dictType = new Dictionary<string, decimal>();
+
+            for (DateTime i = DateTime.Now.AddDays(1 - DateTime.Now.Day); i <= DateTime.Now.AddDays(1 - DateTime.Now.Day).AddMonths(1).AddDays(-1); i = i.AddDays(1))
+            {
+                dictType = new Dictionary<string, decimal>();
+                var list = data.Where(p => p.UpdateTime.ToString("yyyy-MM-dd") == i.ToString("yyyy-MM-dd")).ToList();
+                if (list.Count() > 0)
+                {
+                    list.ForEach(p =>
+                    {
+                        if (dictType.ContainsKey(p.BillsTypeName))
+                            dictType[p.BillsTypeName] = dictType[p.BillsTypeName] + p.Money;
+                        else
+                            dictType[p.BillsTypeName] = p.Money;
+                    });
+                    dict[i.ToString("yyyy-MM-dd")] = dictType;
+                }
+                else
+                {
+                    dict[i.ToString("yyyy-MM-dd")] = new Dictionary<string, decimal>();
+                }
+            }
+            return Json(dict);
         }
 
         /// <summary>
