@@ -67,7 +67,7 @@
     <Compile Include="Extension\LambdaExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="FilesHelper.cs" />
-    <Compile Include="JsonHelper.cs" />
+    <Compile Include="Extension\JsonExtension.cs" />
     <Compile Include="LambdaToSQL\ExpressionVisitor.cs" />
     <Compile Include="LambdaToSQL\ExpressionWriterSql.cs" />
     <Compile Include="LambdaToSQL\LambdaExpConditions.cs" />

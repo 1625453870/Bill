@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bill.Web", "Bill.Web\Bill.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bill.Data.Dapper", "Bill.Data.Dapper\Bill.Data.Dapper.csproj", "{37F5EBA0-5AA5-4023-9E78-376D45EEE6D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bill.Api", "Bill.Api\Bill.Api.csproj", "{E7DDBAEC-C95C-4F4A-AF52-63D6F9F94117}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{37F5EBA0-5AA5-4023-9E78-376D45EEE6D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37F5EBA0-5AA5-4023-9E78-376D45EEE6D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37F5EBA0-5AA5-4023-9E78-376D45EEE6D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7DDBAEC-C95C-4F4A-AF52-63D6F9F94117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7DDBAEC-C95C-4F4A-AF52-63D6F9F94117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7DDBAEC-C95C-4F4A-AF52-63D6F9F94117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7DDBAEC-C95C-4F4A-AF52-63D6F9F94117}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{DE94971F-71E6-4685-8AF5-1638EECD4007} = {5C229951-9103-43D2-A6D4-D8FEB69A89A5}
 		{C4BBBF03-3A5A-4804-8DEA-1134C7CC7F14} = {B07AC596-9727-4F7E-B3C7-E4D995F009E1}
 		{37F5EBA0-5AA5-4023-9E78-376D45EEE6D0} = {5C229951-9103-43D2-A6D4-D8FEB69A89A5}
+		{E7DDBAEC-C95C-4F4A-AF52-63D6F9F94117} = {AD0ED97E-4381-499B-BBCE-097D6337AF4F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8F28C244-F564-41C8-AF9C-EE5AB34A5197}
