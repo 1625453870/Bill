@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../components/Home'
+import VueRouter from 'vue-router'
+import Home from '../components/Home.vue'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const router = new VueRouter({
+export default new VueRouter({
     router: [
         {
             path: '/',
@@ -12,13 +12,6 @@ const router = new VueRouter({
             meta: {
                 ShowFooterBar: true
             }
-        },
-        {
-            path: '/HelloWorld',
-            name: 'HelloWorld',
-            component(resolve) {
-                require(['@/components/HelloWorld'], resolve);
-            }
-        },
+        }
     ]
 })

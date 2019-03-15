@@ -1,13 +1,16 @@
 <template>
   <div>
-    <p>{{messag}}</p>
+    <p>{{food}}</p>
   </div>
 </template>
 <<script>
-export default {
- data:{
-     message:"zx"
- }
-  
-}
+ export default {
+    data: function () {
+      return {
+        food: "zx",
+        type: {}
+      }
+    },
+    
+  }
 </script>>
